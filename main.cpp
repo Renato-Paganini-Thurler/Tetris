@@ -1,10 +1,9 @@
 // The graphics library
-
 #include <SFML/Graphics.hpp>
 #include <time.h>
 using namespace sf;
 
-// Global variables
+// Global variables //
 
 const int HEIGHT = 20;
 const int WIDTH = 10;
@@ -29,7 +28,8 @@ int pieces[7][4]{
 };
 
 /*
-Piece array has four elements broken into even and odds, applying the piece description to this the pattern of the pieces appear
+
+Pieces array has four elements broken into even and odds, applying the piece description to this the pattern of the pieces appear
 
 0: |0|1|
 1: |2|3|
@@ -73,12 +73,11 @@ int main()
   Texture tbg;
   tbg.loadFromFile("src/background.png");
 
+  // Load the textures into the sprites
+
   Sprite tile(tiles);
   Sprite backgorund(tbg);
   Sprite frame(tframe);
-
-  // Texture size
-  // tile.setTextureRect(IntRect(0, 0, 18, 18));
 
   // Tiles variables
   int dx = 0;
@@ -125,9 +124,11 @@ int main()
         }
       }
     }
-    if (Keyboard::isKeyPressed(Keyboard::Down))
+
+    //Pieces fall faster
+    if (Keyboard::isKeyPressed(Keyboard::Down)){
       delay = 0.05;
-    // Move
+    }
 
     for (int i = 0; i < 4; i++)
     {
@@ -135,7 +136,7 @@ int main()
       a[i].x += dx;
     }
 
-    // This can be inverted
+    // Each value is stored on point b
     if (!check())
     {
       for (int i = 0; i < 4; i++)
@@ -144,7 +145,7 @@ int main()
       }
     }
 
-    // Rotate
+    // Rotate, by transforming coordinates//
 
     if (rotate)
     {
@@ -167,7 +168,8 @@ int main()
       }
     }
 
-    // Tick and fall
+    // Tick and fall //
+
     if (timer > delay)
     {
       for (int i = 0; i < 4; i++)
@@ -232,7 +234,7 @@ int main()
           continue;
         tile.setTextureRect(IntRect(field[i][j] * 18, 0, 18, 18));
         tile.setPosition(j * 18, i * 18);
-        tile.move(28, 31); // offsete
+        tile.move(28, 31); // offset
         window.draw(tile);
       }
     }
@@ -241,7 +243,7 @@ int main()
     {
       tile.setTextureRect(IntRect(colorOption * 18, 0, 18, 18));
       tile.setPosition(a[i].x * 18, a[i].y * 18);
-      tile.move(28, 31); // offsete
+      tile.move(28, 31); // offset
       window.draw(tile);
     }
     window.draw(frame);
