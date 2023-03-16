@@ -63,9 +63,18 @@ int main()
   Texture tiles;
   tiles.loadFromFile("src/tiles.png");
 
+  Texture tframe;
+  tframe.loadFromFile("src/frame.png");
+
+  Texture tbg;
+  tbg.loadFromFile("src/background.png");
+
   Sprite tile(tiles);
+  Sprite backgorund(tbg);
+  Sprite frame (tframe);
+  
   // Texture size
-  tile.setTextureRect(IntRect(0, 0, 18, 18));
+  //tile.setTextureRect(IntRect(0, 0, 18, 18));
 
   // Tiles variables
   int dx = 0;
@@ -112,7 +121,7 @@ int main()
         }
       }
     }
-
+    if (Keyboard::isKeyPressed(Keyboard::Down)) delay=0.05;
     // Move
 
     for (int i = 0; i < 4; i++)
@@ -182,29 +191,52 @@ int main()
       timer = 0;
     }
 
+    //Check
+    int k = HEIGHT -1;
+    for (int i = HEIGHT-1; i > 0; i--)
+    {
+      int count = 0;
+      for (int  j = 0; j < WIDTH; j++)
+      {
+       if(field[i][j]){
+          count++;
+       }
+       field[k][j] = field[i][j];
+      }
+      if(count < WIDTH ){
+        k--;
+      }
+    }
+    
+
     dx = 0;
     rotate = false;
+    delay = 0.3;
 
     // Draw
     window.clear(Color::White);
+    window.draw(backgorund);
 
     for (int i = 0; i < HEIGHT; i++)
     {
       for (int j = 0; j < WIDTH; j++)
       {
         if(field[i][j] == 0) continue;
-
+        tile.setTextureRect(IntRect(field[i][j]*18,0,18,18));
         tile.setPosition(j*18, i*18);
+        tile.move(28,31); //offsete
         window.draw(tile);
       }
     }
 
     for (int i = 0; i < 4; i++)
     {
+      tile.setTextureRect(IntRect(colorOption*18,0,18,18));
       tile.setPosition(a[i].x * 18, a[i].y * 18);
+      tile.move(28,31); //offsete
       window.draw(tile);
     }
-
+    window.draw(frame);
     window.display();
   }
   return 0;
