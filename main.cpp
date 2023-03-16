@@ -41,10 +41,14 @@ Piece array has four elements broken into even and odds, applying the piece desc
 // Verifies the position of the pieces
 bool check()
 {
-  for (int i = 0; i < 4; i++){
-    if (a[i].x < 0 || a[i].x >= WIDTH || a[i].y >= HEIGHT){
-      return false;}
-    else if (field[a[i].y][a[i].x]){
+  for (int i = 0; i < 4; i++)
+  {
+    if (a[i].x < 0 || a[i].x >= WIDTH || a[i].y >= HEIGHT)
+    {
+      return false;
+    }
+    else if (field[a[i].y][a[i].x])
+    {
       return false;
     }
   }
@@ -71,10 +75,10 @@ int main()
 
   Sprite tile(tiles);
   Sprite backgorund(tbg);
-  Sprite frame (tframe);
-  
+  Sprite frame(tframe);
+
   // Texture size
-  //tile.setTextureRect(IntRect(0, 0, 18, 18));
+  // tile.setTextureRect(IntRect(0, 0, 18, 18));
 
   // Tiles variables
   int dx = 0;
@@ -121,7 +125,8 @@ int main()
         }
       }
     }
-    if (Keyboard::isKeyPressed(Keyboard::Down)) delay=0.05;
+    if (Keyboard::isKeyPressed(Keyboard::Down))
+      delay = 0.05;
     // Move
 
     for (int i = 0; i < 4; i++)
@@ -140,7 +145,7 @@ int main()
     }
 
     // Rotate
-    
+
     if (rotate)
     {
 
@@ -173,12 +178,13 @@ int main()
 
       if (!check())
       {
-        for (int i = 0; i < 4; i++){
+        for (int i = 0; i < 4; i++)
+        {
           field[b[i].y][b[i].x] = colorOption;
         }
 
         colorOption = 1 + rand() % 7;
-        //Defines which piece will show 
+        // Defines which piece will show
         int n = rand() % 7;
         for (int i = 0; i < 4; i++)
         {
@@ -191,23 +197,24 @@ int main()
       timer = 0;
     }
 
-    //Check
-    int k = HEIGHT -1;
-    for (int i = HEIGHT-1; i > 0; i--)
+    // Check
+    int k = HEIGHT - 1;
+    for (int i = HEIGHT - 1; i > 0; i--)
     {
       int count = 0;
-      for (int  j = 0; j < WIDTH; j++)
+      for (int j = 0; j < WIDTH; j++)
       {
-       if(field[i][j]){
+        if (field[i][j])
+        {
           count++;
-       }
-       field[k][j] = field[i][j];
+        }
+        field[k][j] = field[i][j];
       }
-      if(count < WIDTH ){
+      if (count < WIDTH)
+      {
         k--;
       }
     }
-    
 
     dx = 0;
     rotate = false;
@@ -221,19 +228,20 @@ int main()
     {
       for (int j = 0; j < WIDTH; j++)
       {
-        if(field[i][j] == 0) continue;
-        tile.setTextureRect(IntRect(field[i][j]*18,0,18,18));
-        tile.setPosition(j*18, i*18);
-        tile.move(28,31); //offsete
+        if (field[i][j] == 0)
+          continue;
+        tile.setTextureRect(IntRect(field[i][j] * 18, 0, 18, 18));
+        tile.setPosition(j * 18, i * 18);
+        tile.move(28, 31); // offsete
         window.draw(tile);
       }
     }
 
     for (int i = 0; i < 4; i++)
     {
-      tile.setTextureRect(IntRect(colorOption*18,0,18,18));
+      tile.setTextureRect(IntRect(colorOption * 18, 0, 18, 18));
       tile.setPosition(a[i].x * 18, a[i].y * 18);
-      tile.move(28,31); //offsete
+      tile.move(28, 31); // offsete
       window.draw(tile);
     }
     window.draw(frame);
