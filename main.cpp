@@ -1,6 +1,8 @@
 // The graphics library
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <time.h>
+#include <iostream>
 using namespace sf;
 
 // Global variables //
@@ -58,7 +60,7 @@ bool check()
 int main()
 {
 
-  srand(time(0));
+  srand(time(NULL));
 
   // Resolution and window name
   RenderWindow window(VideoMode(320, 480), "Tetris");
@@ -72,6 +74,8 @@ int main()
 
   Texture tbg;
   tbg.loadFromFile("src/background.png");
+
+  
 
   // Load the textures into the sprites
 
@@ -90,9 +94,19 @@ int main()
 
   Clock clock;
 
+  
+    Music music;
+    
+    if(!music.openFromFile("src/theme.ogg")){
+      std::cout << "EERO" << std::endl;
+    }
+    music.play();
+
   // Main game loop
   while (window.isOpen())
   {
+    
+
     // Time
     float time = clock.getElapsedTime().asSeconds();
     clock.restart();
@@ -248,6 +262,7 @@ int main()
     }
     window.draw(frame);
     window.display();
+    
   }
   return 0;
 }

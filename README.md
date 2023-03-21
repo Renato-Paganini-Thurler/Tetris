@@ -11,7 +11,7 @@ https://www.youtube.com/watch?v=rZE700aaT5I&ab_channel=BoostMyTool
 
 //Adding the library to the project
 g++ -c main.cpp -I"C:\Program Files\SFML-2.5.1\include"
-g++ main.o -o main -L"C:\Program Files\SFML-2.5.1\lib" -lsfml-graphics -lsfml-window -lsfml-system
+g++ main.o -o main -L"C:\Program Files\SFML-2.5.1\lib" -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 .\main
 
 //Static linking
