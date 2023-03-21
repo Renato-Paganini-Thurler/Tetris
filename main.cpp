@@ -1,6 +1,7 @@
 // The graphics library
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include <SFML/Window.hpp>
 #include <time.h>
 #include <iostream>
 using namespace sf;
@@ -63,8 +64,8 @@ int main()
   srand(time(NULL));
 
   // Resolution and window name
-  RenderWindow window(VideoMode(320, 480), "Tetris");
-
+  RenderWindow window(VideoMode(640, 880), "Tetris", Style::Close);
+ 
   // Tiles sprites and textures
   Texture tiles;
   tiles.loadFromFile("src/tiles.png");
@@ -246,18 +247,18 @@ int main()
       {
         if (field[i][j] == 0)
           continue;
-        tile.setTextureRect(IntRect(field[i][j] * 18, 0, 18, 18));
-        tile.setPosition(j * 18, i * 18);
-        tile.move(28, 31); // offset
+        tile.setTextureRect(IntRect(field[i][j] * 36, 0, 36, 36));
+        tile.setPosition(j * 36, i * 36);
+        tile.move(56, 62); // offset
         window.draw(tile);
       }
     }
 
     for (int i = 0; i < 4; i++)
     {
-      tile.setTextureRect(IntRect(colorOption * 18, 0, 18, 18));
-      tile.setPosition(a[i].x * 18, a[i].y * 18);
-      tile.move(28, 31); // offset
+      tile.setTextureRect(IntRect(colorOption * 36, 0, 36, 36));
+      tile.setPosition(a[i].x * 36, a[i].y * 36);
+      tile.move(56, 62); // offset
       window.draw(tile);
     }
     window.draw(frame);

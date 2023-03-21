@@ -10,7 +10,11 @@ The SFML libary is essential to this project as well MinGW
 https://www.youtube.com/watch?v=rZE700aaT5I&ab_channel=BoostMyTool
 
 //Adding the library to the project
+After a long struggle trying to do this statically:
+
+add all the dll on the src folder
 g++ -c main.cpp -I"C:\Program Files\SFML-2.5.1\include"
+If there is another dependcy add it on the command bellow
 g++ main.o -o main -L"C:\Program Files\SFML-2.5.1\lib" -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 .\main
 
