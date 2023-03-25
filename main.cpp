@@ -247,7 +247,7 @@ int main()
       {
         if (field[i][j] == 0)
           continue;
-        tile.setTextureRect(IntRect(field[i][j] * 36, 0, 36, 36));
+        tile.setTextureRect(IntRect(field[i][j] * 36, 0, 35, 36));
         tile.setPosition(j * 36, i * 36);
         tile.move(56, 62); // offset
         window.draw(tile);
@@ -256,7 +256,7 @@ int main()
 
     for (int i = 0; i < 4; i++)
     {
-      tile.setTextureRect(IntRect(colorOption * 36, 0, 36, 36));
+      tile.setTextureRect(IntRect(colorOption * 36, 0, 35, 36));
       tile.setPosition(a[i].x * 36, a[i].y * 36);
       tile.move(56, 62); // offset
       window.draw(tile);
